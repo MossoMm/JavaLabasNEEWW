@@ -1,0 +1,12 @@
+{
+  "schemaVersion" : 1,
+  "items" : [ {
+    "type" : "REGULAR",
+    "article" : "ART-001",
+    "name" : "Деталь А",
+    "quantity" : 10,
+    "cell" : "A-1-1",
+    "date" : "2025-01-15",
+    "country" : null,
+    "customsCode" : null
+  },

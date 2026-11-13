@@ -1,0 +1,31 @@
+{
+  "schemaVersion" : 1,
+  "items" : [ {
+    "type" : "REGULAR",
+    "article" : "ART-001",
+    "name" : "Деталь А",
+    "quantity" : 10,
+    "cell" : "A-1-1",
+    "date" : "2025-01-15",
+    "country" : null,
+    "customsCode" : null
+  }, {
+    "type" : "ARCHIVE",
+    "article" : "ART-003",
+    "name" : "Блок В",
+    "quantity" : 5,
+    "cell" : "C-3-4",
+    "date" : "2024-06-10",
+    "country" : null,
+    "customsCode" : null
+  }, {
+    "type" : "IMPORT",
+    "article" : "ART-100",
+    "name" : "Компонент Г",
+    "quantity" : 50,
+    "cell" : "D-4-5",
+    "date" : "2025-03-01",
+    "country" : "Китай",
+    "customsCode" : "53010000"
+  } ]
+}
