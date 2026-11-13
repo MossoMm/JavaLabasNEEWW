@@ -52,7 +52,7 @@ class JsonPartySerializerTest {
     /** Чтение эталонного файла из ресурсов — совпадение полей. */
     @Test
     void loadsReferenceJsonFile() throws Exception {
-        Path ref = Path.of("src/test/resources/serialization/warehouse.json");
+        Path ref = Path.of("src/test/resources/warehouse.json");
         PartyData data = serializer.load(ref);
 
         assertEquals(PartyData.CURRENT_SCHEMA_VERSION, data.getSchemaVersion());
@@ -70,7 +70,7 @@ class JsonPartySerializerTest {
 
     @Test
     void throwsOnCorruptedJson() {
-        Path ref = Path.of("src/test/resources/serialization/broken.json");
+        Path ref = Path.of("src/test/resources/broken.json");
         SerializationException ex = assertThrows(SerializationException.class,
                 () -> serializer.load(ref));
         assertEquals(SerializationException.ErrorCode.INVALID_JSON, ex.getCode());
@@ -78,7 +78,7 @@ class JsonPartySerializerTest {
 
     @Test
     void throwsOnTruncatedJson() {
-        Path ref = Path.of("src/test/resources/serialization/truncated.json");
+        Path ref = Path.of("src/test/resources/truncated.json");
         SerializationException ex = assertThrows(SerializationException.class,
                 () -> serializer.load(ref));
         assertEquals(SerializationException.ErrorCode.INVALID_JSON, ex.getCode());
@@ -86,7 +86,7 @@ class JsonPartySerializerTest {
 
     @Test
     void throwsOnUnsupportedVersion() {
-        Path ref = Path.of("src/test/resources/serialization/wrong_version.json");
+        Path ref = Path.of("src/test/resources/wrongversion.json");
         SerializationException ex = assertThrows(SerializationException.class,
                 () -> serializer.load(ref));
         assertEquals(SerializationException.ErrorCode.UNSUPPORTED_VERSION, ex.getCode());
@@ -94,7 +94,7 @@ class JsonPartySerializerTest {
 
     @Test
     void throwsOnUnknownPartyType() {
-        Path ref = Path.of("src/test/resources/serialization/unknown_type.json");
+        Path ref = Path.of("src/test/resources/unknowntype.json");
         // JSON читается, но DTO→Party падает на неизвестном типе.
         SerializationException ex = assertThrows(SerializationException.class, () -> {
             PartyData data = serializer.load(ref);

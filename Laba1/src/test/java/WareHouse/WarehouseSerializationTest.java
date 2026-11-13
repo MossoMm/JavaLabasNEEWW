@@ -19,8 +19,8 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Интеграционные тесты экспорта/импорта склада через {@link WarehouseService}
- * и общий интерфейс {@link Serializer}.
+ * Интеграционные тесты экспорта/импорта склада через WarehouseService
+ * и общий интерфейс Serializer.
 
  * Проверяет, что GUI-уровень (сервис) корректно работает с обоими форматами,
  * и что после импорта склад содержит те же данные, что были до экспорта.
@@ -129,7 +129,7 @@ class WarehouseSerializationTest {
     /** Импорт битого бинарного файла выбрасывает SerializationException. */
     @Test
     void importCorruptedBinary_throwsSerializationException() {
-        File broken = Path.of("src/test/resources/serialization/wrong_magic.bin").toFile();
+        File broken = Path.of("src/test/resources/wrong_magic.bin").toFile();
         SerializationException ex = assertThrows(SerializationException.class, () ->
                 service.importFromFile(new BinaryPartySerializer(), broken));
         assertEquals(SerializationException.ErrorCode.WRONG_MAGIC, ex.getCode());

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.io.TempDir;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
-
+import static PartyModel.AppConstants.MAGIC;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -40,14 +40,14 @@ class BinaryPartySerializerTest {
         PartyData loaded = serializer.load(file);
 
         assertEquals(original, loaded);
-        assertEquals(BinaryPartySerializer.MAGIC, readMagic(file));
+        assertEquals(MAGIC, readMagic(file));
         assertEquals(PartyData.CURRENT_SCHEMA_VERSION, loaded.getSchemaVersion());
         assertEquals(2, loaded.getItems().size());
     }
 
     @Test
     void loadsReferenceBinFile() throws Exception {
-        Path ref = Path.of("src/test/resources/serialization/warehouse.bin");
+        Path ref = Path.of("src/test/resources/warehouse.bin");
         PartyData data = serializer.load(ref);
 
         assertEquals(PartyData.CURRENT_SCHEMA_VERSION, data.getSchemaVersion());
@@ -63,7 +63,7 @@ class BinaryPartySerializerTest {
 
     @Test
     void throwsOnWrongMagic() {
-        Path ref = Path.of("src/test/resources/serialization/wrong_magic.bin");
+        Path ref = Path.of("src/test/resources/wrong_magic.bin");
         SerializationException ex = assertThrows(SerializationException.class,
                 () -> serializer.load(ref));
         assertEquals(SerializationException.ErrorCode.WRONG_MAGIC, ex.getCode());
@@ -71,7 +71,7 @@ class BinaryPartySerializerTest {
 
     @Test
     void throwsOnUnsupportedVersion() {
-        Path ref = Path.of("src/test/resources/serialization/wrong_version.bin");
+        Path ref = Path.of("src/test/resources/wrong_version.bin");
         SerializationException ex = assertThrows(SerializationException.class,
                 () -> serializer.load(ref));
         assertEquals(SerializationException.ErrorCode.UNSUPPORTED_VERSION, ex.getCode());
@@ -79,7 +79,7 @@ class BinaryPartySerializerTest {
 
     @Test
     void throwsOnTruncatedFile() {
-        Path ref = Path.of("src/test/resources/serialization/truncated.bin");
+        Path ref = Path.of("src/test/resources/truncated.bin");
         SerializationException ex = assertThrows(SerializationException.class,
                 () -> serializer.load(ref));
         assertEquals(SerializationException.ErrorCode.TRUNCATED_FILE, ex.getCode());
